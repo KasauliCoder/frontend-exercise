@@ -1,0 +1,124 @@
+/* 🌿 Container */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.start-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  gap: 1.2rem;
+  padding: 3.5rem;
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(0, 255, 196, 0.4);
+  background: linear-gradient(145deg, #1f2a37, #131b26);
+}
+
+.page-container {
+ box-shadow: 0 0 40px rgba(0, 255, 196, 0.4);
+            background: linear-gradient(145deg, #1f2a37, #131b26);
+}
+
+button {
+  cursor: pointer;
+}
+
+/* 🌱 Heading */
+.heading {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #2dd4bf; /* teal glow */
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* 🧑‍💻 Input */
+.common-input {
+  width: 100%;
+  height: 55px;
+  border: 1px solid #4b5563;
+  border-radius: 10px;
+  background-color: #1f2937;
+  color: #f9fafb;
+  text-align: center;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.25s;
+}
+
+.common-input:focus {
+  border-color: #2dd4bf;
+  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.4);
+}
+
+/* 🟩 Board Options */
+.board-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* 🎨 Button Base */
+.same-btn {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  background-color: #0f172a; /* slate-900 */
+  color: #2dd4bf; /* teal */
+  border: 1px solid #2dd4bf;
+  box-shadow: 0 0 8px rgba(45, 212, 191, 0.15);
+}
+
+.same-btn:hover {
+  background-color: #164e63;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Active button */
+.btn-active {
+  background-color: #2dd4bf;
+  color: #0f172a;
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.4);
+}
+
+/* Main CTA */
+.main-btn {
+  width: 100%;
+  background-color: #2dd4bf;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.main-btn:hover {
+  background-color: #5eead4;
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.5);
+}
+
+/* Secondary */
+.secondary-btn {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #2dd4bf;
+  color: #2dd4bf;
+}
+
+.secondary-btn:hover {
+  background-color: #164e63;
+  color: #ffffff;
+}
+.sound-box {
+  background: #0f172a;
+  border: 1px solid #2dd4bf;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.15);
+  padding: 8px 12px;
+}
