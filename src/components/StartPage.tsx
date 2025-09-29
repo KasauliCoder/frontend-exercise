@@ -37,9 +37,9 @@ export const StartPage: React.FC<StartPageProps> = ({ onStart, onLeaderboard }) 
               viewBox='0 0 24 24'
               fill='none'
               stroke='currentColor'
-              stroke-width='2'
-              stroke-linecap='round'
-              stroke-linejoin='round'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
               className='lucide lucide-volume-off-icon lucide-volume-off'>
               <path d='M16 9a5 5 0 0 1 .95 2.293' />
               <path d='M19.364 5.636a9 9 0 0 1 1.889 9.96' />
@@ -55,9 +55,9 @@ export const StartPage: React.FC<StartPageProps> = ({ onStart, onLeaderboard }) 
               viewBox='0 0 24 24'
               fill='none'
               stroke='currentColor'
-              stroke-width='2'
-              stroke-linecap='round'
-              stroke-linejoin='round'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
               className='lucide lucide-volume2-icon lucide-volume-2'>
               <path d='M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z' />
               <path d='M16 9a5 5 0 0 1 0 6' />
@@ -67,7 +67,7 @@ export const StartPage: React.FC<StartPageProps> = ({ onStart, onLeaderboard }) 
         </button>
         <button
           onClick={() => setShowSettings(true)}
-          className='flex h-[30px] w-[30px] items-center justify-center rounded-xl bg-teal-500/20 text-2xl text-teal-400 transition-all hover:bg-teal-500/30 text-[#121212]'
+          className='flex h-[30px] w-[30px] items-center justify-center rounded-xl bg-teal-500/20 text-2xl text-[#121212] text-teal-400 transition-all hover:bg-teal-500/30'
           title='Settings'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -76,9 +76,9 @@ export const StartPage: React.FC<StartPageProps> = ({ onStart, onLeaderboard }) 
             viewBox='0 0 24 24'
             fill='none'
             stroke='currentColor'
-            stroke-width='2'
-            stroke-linecap='round'
-            stroke-linejoin='round'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
             className='lucide lucide-settings-icon lucide-settings'>
             <path d='M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915' />
             <circle cx='12' cy='12' r='3' />
@@ -86,7 +86,7 @@ export const StartPage: React.FC<StartPageProps> = ({ onStart, onLeaderboard }) 
         </button>
       </div>
       <h1 className='heading'>🌱 Plant Memory Challenge</h1>
-  <input className='common-input' placeholder='Enter your name...' value={name} onChange={(e) => setName(e.target.value)} required />
+      <input className='common-input' placeholder='Enter your name...' value={name} onChange={(e) => setName(e.target.value)} required />
 
       <div className='board-options'>
         {Object.entries(BOARD_SIZES).map(([label, size]) => (

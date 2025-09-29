@@ -7,7 +7,7 @@ export const soundSettings = {
   matchVolume: 0.8,
   missVolume: 0.8,
   winVolume: 0.9,
-  mute: false,
+  mute: false
 }
 
 // Create Howl instances
@@ -27,7 +27,7 @@ export function updateVolumes(settings: typeof soundSettings) {
   gameOverSound.volume(settings.winVolume)
   winningSound.volume(settings.winVolume)
 
-  if(settings.mute){
+  if (settings.mute) {
     Howler.mute(true)
   } else {
     Howler.mute(false)

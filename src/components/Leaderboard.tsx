@@ -21,7 +21,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ onBack }) => {
         <p className='mt-[8px] text-gray-400'>The fastest times and fewest moves on Hard (6x6).</p>
       </div>
 
-      {sorted.length === 0 && <p className='mb-[10px] text-center text-[#00b1a2] text-[20px]'>Be the first to finish a game!</p>}
+      {sorted.length === 0 && <p className='mb-[10px] text-center text-[20px] text-[#00b1a2]'>Be the first to finish a game!</p>}
       {sorted.length > 0 && (
         <div className='mb-[16px] flex items-center justify-between border-b border-gray-700 pb-[8px] text-sm font-semibold text-[#00b1a2]'>
           <span className='w-1/12 text-center text-[#00b1a2]'>#</span>

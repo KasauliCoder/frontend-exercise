@@ -5,14 +5,22 @@
 
 /* Custom flip helpers */
 
-body{
-     font-family: "Play", sans-serif;
+body {
+  font-family: 'Play', sans-serif;
 }
 
-.perspective { perspective: 1000px; }
-.backface-hidden { backface-visibility: hidden; }
-.rotate-y-180 { transform: rotateY(180deg); }
-.transform-style-preserve-3d { transform-style: preserve-3d; }
+.perspective {
+  perspective: 1000px;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
 .common-input {
   width: 100%;
   height: 60px;
@@ -23,7 +31,9 @@ body{
   margin-bottom: 10px;
   text-align: center;
   outline: none;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .common-input:focus {
@@ -31,13 +41,12 @@ body{
   box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.3); /* focus:ring-teal-400 */
 }
 
-.btn-cls{
-    gap: 20px;
-     background: #667082;
-     border: none !important;
+.btn-cls {
+  gap: 20px;
+  background: #667082;
+  border: none !important;
 }
 
-.same-btn:hover{
-    background-color: red;
+.same-btn:hover {
+  background-color: red;
 }
-

@@ -21,22 +21,13 @@ export const EndPage: React.FC<EndPageProps> = ({ result, onRestart }) => {
     const scores = JSON.parse(localStorage.getItem(key) || '[]') as GameResult[]
 
     // Prevent duplicate entries
-    const isDuplicate = scores.some(
-      s =>
-        s.playerName === result.playerName &&
-        s.timeElapsed === result.timeElapsed &&
-        s.moves === result.moves
-    )
+    const isDuplicate = scores.some((s) => s.playerName === result.playerName && s.timeElapsed === result.timeElapsed && s.moves === result.moves)
     if (isDuplicate) return
 
     scores.push(result)
 
     // Sort: fastest time first, then fewest moves
-    scores.sort((a, b) =>
-      a.timeElapsed !== b.timeElapsed
-        ? a.timeElapsed - b.timeElapsed
-        : a.moves - b.moves
-    )
+    scores.sort((a, b) => (a.timeElapsed !== b.timeElapsed ? a.timeElapsed - b.timeElapsed : a.moves - b.moves))
 
     // Keep top 10 scores
     localStorage.setItem(key, JSON.stringify(scores.slice(0, 10)))

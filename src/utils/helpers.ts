@@ -1,6 +1,6 @@
 import type { BoardSize, TileType } from './constants'
 
-export const shuffle = <T,>(arr: T[]): T[] =>
+export const shuffle = <T>(arr: T[]): T[] =>
   arr
     .map((a) => [Math.random(), a] as const)
     .sort((a, b) => a[0] - b[0])
@@ -17,9 +17,8 @@ export const initializeTiles = (size: BoardSize): TileType[] => {
     id: i,
     content: img,
     isFlipped: false,
-    isMatched: false,
+    isMatched: false
   }))
 }
 
-export const formatTime = (t: number): string =>
-  `${Math.floor(t / 60)}m ${String(t % 60).padStart(2, '0')}s`
+export const formatTime = (t: number): string => `${Math.floor(t / 60)}m ${String(t % 60).padStart(2, '0')}s`

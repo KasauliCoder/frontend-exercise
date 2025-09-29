@@ -18,60 +18,42 @@ interface GameState {
   isBoardLocked: boolean
 }
 
-type Action =
-  | { type: 'FLIP'; id: number }
-  | { type: 'MATCH'; ids: number[] }
-  | { type: 'RESET' }
-  | { type: 'LOCK'; lock: boolean }
+type Action = { type: 'FLIP'; id: number } | { type: 'MATCH'; ids: number[] } | { type: 'RESET' } | { type: 'LOCK'; lock: boolean }
 
 function initializeTiles(size: BoardSize): TileType[] {
   const totalPairs = size.totalTiles / 2
-  const images = Array.from(
-    { length: totalPairs },
-    (_, i) => `/images/plant${String(i + 1).padStart(2, '0')}.jpg`
-  )
+  const images = Array.from({ length: totalPairs }, (_, i) => `/images/plant${String(i + 1).padStart(2, '0')}.jpg`)
   const allTiles = shuffle([...images, ...images])
   return allTiles.map((img, i) => ({
     id: i,
     content: img,
     isFlipped: false,
-    isMatched: false,
+    isMatched: false
   }))
 }
 
 function reducer(state: GameState, action: Action): GameState {
   switch (action.type) {
     case 'FLIP':
-      if (
-        state.isBoardLocked ||
-        state.tiles[action.id].isFlipped ||
-        state.tiles[action.id].isMatched
-      )
-        return state
+      if (state.isBoardLocked || state.tiles[action.id].isFlipped || state.tiles[action.id].isMatched) return state
       return {
         ...state,
-        tiles: state.tiles.map((t) =>
-          t.id === action.id ? { ...t, isFlipped: true } : t
-        ),
+        tiles: state.tiles.map((t) => (t.id === action.id ? { ...t, isFlipped: true } : t)),
         flippedTiles: [...state.flippedTiles, action.id],
-        moves: state.flippedTiles.length === 1 ? state.moves + 1 : state.moves,
+        moves: state.flippedTiles.length === 1 ? state.moves + 1 : state.moves
       }
     case 'MATCH':
       return {
         ...state,
-        tiles: state.tiles.map((t) =>
-          action.ids.includes(t.id) ? { ...t, isMatched: true } : t
-        ),
+        tiles: state.tiles.map((t) => (action.ids.includes(t.id) ? { ...t, isMatched: true } : t)),
         flippedTiles: [],
-        matchesFound: state.matchesFound + 1,
+        matchesFound: state.matchesFound + 1
       }
     case 'RESET':
       return {
         ...state,
-        tiles: state.tiles.map((t) =>
-          state.flippedTiles.includes(t.id) ? { ...t, isFlipped: false } : t
-        ),
-        flippedTiles: [],
+        tiles: state.tiles.map((t) => (state.flippedTiles.includes(t.id) ? { ...t, isFlipped: false } : t)),
+        flippedTiles: []
       }
     case 'LOCK':
       return { ...state, isBoardLocked: action.lock }
@@ -86,7 +68,7 @@ export const GamePage: React.FC<GamePageProps> = ({ playerName, boardSize, onEnd
     flippedTiles: [],
     moves: 0,
     matchesFound: 0,
-    isBoardLocked: false,
+    isBoardLocked: false
   })
 
   const [time, setTime] = useState(0)
@@ -94,7 +76,9 @@ export const GamePage: React.FC<GamePageProps> = ({ playerName, boardSize, onEnd
 
   useEffect(() => {
     bgMusic.play()
-    return () => { bgMusic.stop(); };
+    return () => {
+      bgMusic.stop()
+    }
   }, [])
 
   useEffect(() => {
@@ -133,7 +117,7 @@ export const GamePage: React.FC<GamePageProps> = ({ playerName, boardSize, onEnd
         playerName,
         moves: state.moves,
         boardSize,
-        timeElapsed: time,
+        timeElapsed: time
       })
     }
   }, [state.matchesFound, totalPairs, playerName, state.moves, boardSize, time, onEnd])
@@ -144,48 +128,41 @@ export const GamePage: React.FC<GamePageProps> = ({ playerName, boardSize, onEnd
       playerName,
       moves: state.moves,
       boardSize,
-      timeElapsed: time,
+      timeElapsed: time
     })
   }
 
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen w-full px-[32px] py-[40px] page-container relative min-h-screen bg-[#0b1717] p-4 text-white">
+    <div className='page-container relative flex min-h-screen w-full flex-col items-center justify-start bg-[#0b1717] p-4 px-[32px] py-[40px] text-white'>
       {/* Header */}
-      <div className="flex justify-between items-center w-full max-w-[500px] bg-gray-800/40 backdrop-blur-xl border border-[#5e5e5e] px-[32px] py-[16px] rounded-2xl shadow-lg ">
+      <div className='flex w-full max-w-[500px] items-center justify-between rounded-2xl border border-[#5e5e5e] bg-gray-800/40 px-[32px] py-[16px] shadow-lg backdrop-blur-xl'>
         <button
           onClick={handleQuit}
-          className="text-[#ff0000] text-lg font-semibold hover:text-red-300 hover:scale-105 transition-all py-[6px] px-[10px]"
-        >
+          className='px-[10px] py-[6px] text-lg font-semibold text-[#ff0000] transition-all hover:scale-105 hover:text-red-300'>
           ⏪ Quit
         </button>
-        <div className="text-[#fff] text-lg font-medium space-x-6">
+        <div className='space-x-6 text-lg font-medium text-[#fff]'>
           <span>
-            Moves: <span className="text-teal-400 font-semibold">{state.moves}</span>
+            Moves: <span className='font-semibold text-teal-400'>{state.moves}</span>
           </span>
           <span>
-            Time:{" "}
-            <span className="text-yellow-400 font-semibold">
+            Time:{' '}
+            <span className='font-semibold text-yellow-400'>
               {Math.floor(time / 60)}:{String(time % 60).padStart(2, '0')}
             </span>
           </span>
         </div>
-        <p className="text-[#00b1a2] text-[20px] font-semibold">{playerName}</p>
+        <p className='text-[20px] font-semibold text-[#00b1a2]'>{playerName}</p>
       </div>
 
       {/* Game Board */}
       <div
-        className="grid gap-5 max-w-[500px] w-full justify-center bg-slate-800/30 backdrop-blur-md p-[32px] rounded-3xl shadow-[0_0_40px_rgba(56,189,248,0.3)] border border-[#5e5e5e] page-container gap-4"
+        className='page-container grid w-full max-w-[500px] justify-center gap-4 gap-5 rounded-3xl border border-[#5e5e5e] bg-slate-800/30 p-[32px] shadow-[0_0_40px_rgba(56,189,248,0.3)] backdrop-blur-md'
         style={{
-          gridTemplateColumns: `repeat(${boardSize.cols}, minmax(40px, 1fr))`,
-        }}
-      >
+          gridTemplateColumns: `repeat(${boardSize.cols}, minmax(40px, 1fr))`
+        }}>
         {state.tiles.map((tile) => (
-          <Tile
-            key={tile.id}
-            tile={tile}
-            onClick={handleTileClick}
-            isLocked={state.isBoardLocked}
-          />
+          <Tile key={tile.id} tile={tile} onClick={handleTileClick} isLocked={state.isBoardLocked} />
         ))}
       </div>
     </div>
