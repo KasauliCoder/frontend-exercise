@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import type { GameResult } from '../utils/constants'
 import { formatTime } from '../utils/constants'
@@ -9,28 +9,21 @@ interface EndPageProps {
 }
 
 export const EndPage: React.FC<EndPageProps> = ({ result, onRestart }) => {
-  // ✅ Prevent double saving
-  const savedRef = useRef(false)
-
   useEffect(() => {
-    if (savedRef.current) return
-    savedRef.current = true
+    const scores: GameResult[] = JSON.parse(localStorage.getItem('scores') || '[]')
+    const alreadyExists = scores.some(
+      (s) =>
+        s.playerName === result.playerName &&
+        s.moves === result.moves &&
+        s.timeElapsed === result.timeElapsed &&
+        s.boardSize.rows === result.boardSize.rows &&
+        s.boardSize.cols === result.boardSize.cols
+    )
 
-    // Save scores per board size
-    const key = `scores_${result.boardSize.rows}x${result.boardSize.cols}`
-    const scores = JSON.parse(localStorage.getItem(key) || '[]') as GameResult[]
-
-    // Prevent duplicate entries
-    const isDuplicate = scores.some((s) => s.playerName === result.playerName && s.timeElapsed === result.timeElapsed && s.moves === result.moves)
-    if (isDuplicate) return
-
-    scores.push(result)
-
-    // Sort: fastest time first, then fewest moves
-    scores.sort((a, b) => (a.timeElapsed !== b.timeElapsed ? a.timeElapsed - b.timeElapsed : a.moves - b.moves))
-
-    // Keep top 10 scores
-    localStorage.setItem(key, JSON.stringify(scores.slice(0, 10)))
+    if (!alreadyExists) {
+      scores.push(result)
+      localStorage.setItem('scores', JSON.stringify(scores))
+    }
   }, [result])
 
   return (

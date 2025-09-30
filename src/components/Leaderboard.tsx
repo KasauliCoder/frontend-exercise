@@ -18,7 +18,6 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ onBack }) => {
       className='page-container w-[500px] max-w-lg rounded-3xl border border-[#cccccc5f] p-[32px] text-[#fff] sm:p-12'>
       <div className='mb-[40px] text-center'>
         <h2 className='mb-[24px] text-3xl font-bold text-[#fff] text-teal-400'>🏆 Top Scorers</h2>
-        <p className='mt-[8px] text-gray-400'>The fastest times and fewest moves on Hard (6x6).</p>
       </div>
 
       {sorted.length === 0 && <p className='mb-[10px] text-center text-[20px] text-[#00b1a2]'>Be the first to finish a game!</p>}

@@ -6,8 +6,6 @@ import { GamePage } from './components/GamePage'
 import { StartPage } from './components/StartPage'
 import { EndPage } from './components/EndPage'
 import { Leaderboard } from './components/Leaderboard'
-// import { SettingsPanel } from './components/SettingsPanel'
-// import { Howler } from 'howler'
 
 export default function App() {
   const [view, setView] = useState<GameView>('start')
